@@ -1,6 +1,7 @@
 import express from "express"
 import { ENV } from "./lib/env.js"
 import path from "path"
+import { connectDB } from "./lib/db.js"
 
 const app = express()
 
@@ -11,7 +12,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/books", (req, res) => {
-    res.status(200).json({message: "success book"})
+    res.status(200).json({message: "success books"})
 })
 
 if(ENV.NODE_ENV === "production") {
@@ -22,4 +23,13 @@ if(ENV.NODE_ENV === "production") {
     })
 }
 
-app.listen(ENV.PORT, () => console.log("server is runing on port", ENV.PORT))
+const startServer = async () => {
+    try {
+
+        app.listen(ENV.PORT, () => console.log("✅ Server connected successfuly"))
+    } catch (error) {
+        console.error("Error while connecting", error)
+    }
+}
+
+startServer()
