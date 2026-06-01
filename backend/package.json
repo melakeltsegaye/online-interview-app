@@ -14,7 +14,6 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mern_5": "file:..",
     "mongoose": "^9.6.3"
   },
   "devDependencies": {
