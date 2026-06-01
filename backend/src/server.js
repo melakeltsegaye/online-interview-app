@@ -16,6 +16,9 @@ app.get("/books", (req, res) => {
 })
 
 if(ENV.NODE_ENV === "production") {
+    console.log(
+  path.join(__dirname, "../frontend/dist")
+)
     app.use(express.static(path.join(__dirname, "../frontend/dist")))
 
     app.get("/{*any}", (req, res) => {
