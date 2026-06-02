@@ -7,7 +7,7 @@ const app = express()
 
 const __dirname = path.resolve()
 
-app.get("/", (req, res) => {
+app.get("/hi", (req, res) => {
     res.status(200).json({message: "success ok"})
 })
 
@@ -15,12 +15,7 @@ app.get("/books", (req, res) => {
     res.status(200).json({message: "success books"})
 })
 
- console.log(
-  "hi"
-)
- console.log(
-  path.join(__dirname, "../frontend/dist")
-)
+\
 
 if(ENV.NODE_ENV === "production") {
     console.log(
@@ -28,7 +23,7 @@ if(ENV.NODE_ENV === "production") {
 )
     app.use(express.static(path.join(__dirname, "../frontend/dist")))
 
-    app.get("/{*any}", (req, res) => {
+    app.get("*", (req, res) => {
         res.sendFile(path.join(__dirname,"../frontend", "dist", "index.html"))
     })
 }
