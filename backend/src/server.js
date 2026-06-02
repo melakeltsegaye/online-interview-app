@@ -16,6 +16,9 @@ app.get("/books", (req, res) => {
 })
 
  console.log(
+  "hi"
+)
+ console.log(
   path.join(__dirname, "../frontend/dist")
 )
 
