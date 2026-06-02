@@ -7,15 +7,12 @@ const app = express()
 
 const __dirname = path.resolve()
 
-app.get("/hi", (req, res) => {
-    res.status(200).json({message: "success ok"})
-})
 
-app.get("/books", (req, res) => {
-    res.status(200).json({message: "success books"})
-})
+// app.get("/books", (req, res) => {
+//     res.status(200).json({message: "success books"})
+// })
 
-\
+
 
 if(ENV.NODE_ENV === "production") {
     console.log(
