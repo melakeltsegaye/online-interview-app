@@ -15,6 +15,10 @@ app.get("/books", (req, res) => {
     res.status(200).json({message: "success books"})
 })
 
+ console.log(
+  path.join(__dirname, "../frontend/dist")
+)
+
 if(ENV.NODE_ENV === "production") {
     console.log(
   path.join(__dirname, "../frontend/dist")
