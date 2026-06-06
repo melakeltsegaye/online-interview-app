@@ -17,7 +17,8 @@
     "express": "^5.2.1",
     "inngest": "^4.5.0",
     "mern_5": "file:..",
-    "mongoose": "^9.6.3"
+    "mongoose": "^9.6.3",
+    "stream-chat": "^9.45.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
