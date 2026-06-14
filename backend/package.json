@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@clerk/express": "^2.1.25",
+    "@stream-io/node-sdk": "^0.7.59",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
