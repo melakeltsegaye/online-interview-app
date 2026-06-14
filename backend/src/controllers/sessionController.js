@@ -92,8 +92,15 @@ export async function joinSession(req, res) {
         const session = await Session.findById(id)
         
         if (!session) return res.status(404).json({message:"session not found"})
+
+        if(session.status !== "active") {
+            return res.status(400).json({message: "can not join a completed session"})
+        }
          
-        if(session.participant) return res.status(404).json({message:"session is full"})    
+        if(session.host.toString() === userId.toString()){
+            return res.status(400).json({message:"host can not join their own session as participant"})
+        }
+        if(session.participant) return res.status(409).json({message:"session is full"})    
 
         session.participant=userId
         await session.save()
@@ -125,8 +132,6 @@ export async function endSession(req, res) {
             }
         }
 
-        session.srarus = "completed"
-        await session.save()
 
         const call = streamClient.video.call("default", session.callId)
         await call.delete()
@@ -135,6 +140,9 @@ export async function endSession(req, res) {
         await channel.delete()
 
         res.status(200).json({session, message:"session ended successfuly"})
+
+        session.srarus = "completed"
+        await session.save()
     } catch (error) {
          console.log("Error while runing endSession controller", error.message)
         res.status(500).json({message:"Internal server error"})
