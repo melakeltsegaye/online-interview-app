@@ -53,18 +53,23 @@ export async function getActiveSessions(req, res) {
 
 
 export async function getMyRecentSessions(req, res) {
-    try {
-        const userId = req.user._id
+  try {
+    const userId = req.user._id;
 
-        const sessions = await Session.find({
-            status: "completed",
-            $or: [{ host: userId}, { participant: userId } ]
-        }).sort({ createdAt: -1}).limit(20)
-    } catch (error) {
-        console.log("error in getMyRrecentSession controller", error.message)
-        res.status(500).json({message: "internal server error"})
-    }
-}
+    // get sessions where user is either host or participant
+    const sessions = await Session.find({
+      status: "completed",
+      $or: [{ host: userId }, { participant: userId }],
+    })
+      .sort({ createdAt: -1 })
+      .limit(20);
+
+    res.status(200).json({ sessions });
+  } catch (error) {
+    console.log("Error in getMyRecentSessions controller:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}``
 
 
 export async function getSessionById(req, res) {
