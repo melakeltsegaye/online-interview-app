@@ -1,11 +1,13 @@
 import { Link, useLocation } from "react-router"
 import { SparklesIcon, BookOpenIcon, LayoutDashboardIcon } from "lucide-react"
 import { UserButton } from "@clerk/clerk-react"
+import { sessionApi } from "../api/sessions"
 
 
 
 const Navbar = () => {
   const location = useLocation()
+  sessionApi.get
   
   const isActive =(path) =>  location.pathname === path;
   return (
